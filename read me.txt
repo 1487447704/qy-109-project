@@ -1,0 +1,13 @@
+1.架构搭建
+    1.1 springcloud
+        consumer，provider，feign，hystrix，eureka,zuul
+        大型的分布式项目：
+            qy-109-project:父工程（pom）
+                只是管理jar包，没有实际的意义
+                需要管理的jar包：
+                qy-109-project-common:公共的工程（jar）
+                    utils，枚举，静态常量
+                qy-109-project-config:配置工程（jar）
+                    项目所用到的中间件的配置
+                        redis,es,ftp...
+                qy-109-project
