@@ -7,7 +7,61 @@
                 需要管理的jar包：
                 qy-109-project-common:公共的工程（jar）
                     utils，枚举，静态常量
+
                 qy-109-project-config:配置工程（jar）
                     项目所用到的中间件的配置
                         redis,es,ftp...
-                qy-109-project
+
+                qy-109-project-eureka-management:pom
+                    qy-109-project-eureka-7081:jar
+                    qy-109-project-eureka-7082:jar
+                    qy-109-project-eureka-7083:jar
+
+                qy-109-project-consumer-management:pom(父工程)
+                    qy-109-project-consumer-backup:只能写后台
+                    qy-109-project-consumer...
+
+                qy-109-project-provider-management:pom(父工程)
+                    如果不考虑负载均衡，一个consumer就要对应一个provider
+
+                qy-109-project-zuul:jar
+
+                qy-109-project-management:核心工程(pom)
+                    qy-109-project-model:jar
+                    qy-109-project-mapper:jar
+                    qy-109-project-service:jar
+                    qy-109-project-api:jar
+
+    1.2 依赖关系（解耦）
+        qy-109-project-common
+            绝对不能有任何依赖
+
+        qy-109-project-config
+            依赖于---->qy-109-project-common
+
+         qy-109-project-eureka-management
+            绝对不能有依赖
+
+         qy-109-project-consumer-management
+            依赖于---->qy-109-project-api(feign)
+
+         qy-109-project-provider-management
+            依赖于---->qy-109-project-service
+            不可以依赖qy-109-project-config
+                 也就是说所有的redis,es,ftp都在这里完成
+                 必须要把业务逻辑写进controller
+            这种依赖是不科学的，所有业务都必须要在service层完成，controller这一层只做跳转
+
+         qy-109-project-model
+            不需要依赖于任何东西
+
+         qy-109-project-service
+            需要依赖于qy-109-project-mapper
+            还需要依赖于qy-109-project-config
+
+         qy-109-project-api:jar
+            需要依赖于qy-109-project-model
+
+          qy-109-project-provider-management
+             需要依赖于qy-109-project-common
+
