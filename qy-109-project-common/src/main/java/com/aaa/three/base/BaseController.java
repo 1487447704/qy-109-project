@@ -1,6 +1,7 @@
 package com.aaa.three.base;
 
 import static com.aaa.three.status.LoginStatus.*;
+import static com.aaa.three.status.OperationStatus.*;
 
 /**
  * @Param
@@ -269,4 +270,144 @@ public class BaseController {
         resultData.setMsg(msg);
         return resultData;
     }
+
+    /**
+     * @Description :
+        操作成功 返回系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:20
+     */
+    protected ResultData operationSuccess() {
+        ResultData resultData = new ResultData();
+        resultData.setCode(SUCCESS.getCode());
+        resultData.setMsg(SUCCESS.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+        操作失败 返回系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:20
+     */
+    protected ResultData operationFailed() {
+        ResultData resultData = new ResultData();
+        resultData.setCode(FAILED.getCode());
+        resultData.setMsg(FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+        修改操作，返回系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:41
+     */
+    protected ResultData updateOperation(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(UPDATE_OPERATION.getCode());
+        resultData.setMsg(UPDATE_OPERATION.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+     删除操作，返回系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:42
+     */
+    protected ResultData deleteOperation(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION.getCode());
+        resultData.setMsg(DELETE_OPERATION.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+        新增操作
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:44
+     */
+    protected ResultData insertOperation(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION.getCode());
+        resultData.setMsg(INSERT_OPERATION.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+        路由过滤成功，使用系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:46
+     */
+    protected ResultData zuulFilterSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ZUUL_FILTER_SUCCESS.getCode());
+        resultData.setMsg(ZUUL_FILTER_SUCCESS.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+        路由过滤失败，使用系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:47
+     */
+    protected ResultData zuulFilterFailed(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ZUUL_FILTER_FAILED.getCode());
+        resultData.setMsg(ZUUL_FILTER_FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+     token值存在，使用系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:48
+     */
+    protected ResultData zuulFilterTokenSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ZUUL_FILTER_TOKEN_SUCCESS.getCode());
+        resultData.setMsg(ZUUL_FILTER_TOKEN_SUCCESS.getMsg());
+        return resultData;
+    }
+
+    /**
+     * @Description :
+        token值不存在，使用系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:49
+     */
+    protected ResultData zuulFilterTokenFailed(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(ZUUL_FILTER_TOKEN_FAILED.getCode());
+        resultData.setMsg(ZUUL_FILTER_TOKEN_FAILED.getMsg());
+        return resultData;
+    }
+    /**
+     * @Description :
+        request对象为null，使用系统消息
+     * @return : com.aaa.three.base.ResultData
+     * @author : yk
+     * @date : 2020/07/09 20:51
+     */
+    protected ResultData requestIsNull(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(REQUEST_IS_NULL.getCode());
+        resultData.setMsg(REQUEST_IS_NULL.getMsg());
+        return resultData;
+    }
+    //TODO：代码未完善，记得补充
 }
