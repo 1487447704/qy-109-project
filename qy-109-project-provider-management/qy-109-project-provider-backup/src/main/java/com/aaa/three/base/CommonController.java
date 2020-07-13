@@ -3,7 +3,12 @@ package com.aaa.three.base;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -156,29 +161,84 @@ public abstract class CommonController<T> extends BaseController {
         T instance = getBaseService().newInstance(map);
         List<T> list = getBaseService().selectList(instance);
         if (list.size() > 0 && list != null){
-            return super.operationFailed();
+            return super.operationSuccess();
         }
         return super.operationFailed();
 
     }
     /**
      * @Description : 带分页不带条件的查询
-     * @param t
      * @param pageNo
      * @param pageSize
      * @return : com.aaa.three.base.ResultData
      * @author : yk
      * @date : 2020/07/09 21:16
      */
-    public ResultData selectListPage(T t, Integer pageNo,Integer pageSize){
-            try{
-                PageInfo<T> pageInfo = getBaseService().selectListByPage(t,pageNo,pageSize);
-                if (pageInfo != null && pageInfo.getPageSize()>0){
-                    return super.operationSuccess();
+    public ResultData selectListPage(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize") int pageSize){
+                PageInfo<T> pageInfo = getBaseService().selectListByPage(null,pageNo,pageSize);
+                List<T> resultList = pageInfo.getList();
+                if(resultList.size() > 0) {
+                    return operationSuccess();
                 }
-            }catch (Exception e){
-                e.printStackTrace();
+                return operationFailed();
             }
-            return super.operationFailed();
+            /**
+             * @Description :带条件的分页查询
+             * @param map
+             * @param pageNo
+             * @param pageSize
+             * @return : com.aaa.three.base.ResultData
+             * @author : yk
+             * @date : 2020/07/10 14:57
+             */
+    public ResultData getListByPage(@RequestBody Map map, @RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize){
+        T t = getBaseService().newInstance(map);
+        PageInfo<T> pageInfo = getBaseService().selectListByPage(t,pageNo,pageSize);
+        List<T> resultList = pageInfo.getList();
+        if(resultList.size() > 0) {
+            return operationSuccess();
+        }
+        return operationFailed();
     }
+
+
+    /**
+     * @Description :
+        从本地当前线程中获取request对象
+     * @return : javax.servlet.http.HttpServletRequest
+     * @author : yk
+     * @date : 2020/07/10 14:58
+     */
+    public HttpServletRequest getServletRequest() {
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes servletRequestAttributes;
+        if (requestAttributes instanceof ServletRequestAttributes) {
+            servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
+            return servletRequestAttributes.getRequest();
+        }
+        return null;
+    }
+
+    /**
+     * @Description :
+        获取当前客户端session对象(如果没有则创建一个新的session)
+     * @return : javax.servlet.http.HttpSession
+     * @author : yk
+     * @date : 2020/07/10 14:59
+     */
+    public HttpSession getSession() {
+        return getServletRequest().getSession();
+    }
+
+    /**
+     * @Description :
+        获取当前客户端session对象(如果没有则直接返回null)
+     * @return : javax.servlet.http.HttpSession
+     * @author : yk
+     * @date : 2020/07/10 14:59
+     */
+    public HttpSession getExistSession() {
+        return getServletRequest().getSession(false);
+    }
+
 }

@@ -8,6 +8,7 @@ import com.aaa.three.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @Param
@@ -28,13 +29,18 @@ public class UserController extends CommonController<User> {
         return userService;
     }
 
-    @PostMapping("/add")
+  /*  @PostMapping("/add")
     public ResultData add(User user){
         return userService.insertData(user);
-    }
+    }*/
 
     @PostMapping("/select")
     public Object selectAllRoles(){
         return userService.selectAllRoles();
     }
+
+   /* @PostMapping("/upload")
+    public Boolean upload(MultipartFile file){
+
+    }*/
 }
