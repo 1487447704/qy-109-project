@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>qy-109-project-consumer-management</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>qy-109-project-consumer-backup</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>com.aaa.three</groupId>
