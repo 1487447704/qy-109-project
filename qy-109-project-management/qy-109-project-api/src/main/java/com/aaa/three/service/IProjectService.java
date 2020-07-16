@@ -3,6 +3,7 @@ package com.aaa.three.service;
 import com.aaa.three.base.ResultData;
 import com.aaa.three.model.LoginLog;
 import com.aaa.three.model.MappingProject;
+import com.aaa.three.model.MappingUnit;
 import com.aaa.three.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,4 +74,14 @@ public interface IProjectService {
      */
     @GetMapping("/allAchievementExchange")
     List<MappingProject> allAchievementExchange();
+    /**
+     * @author: deng
+     * @date: 2020/07/16
+     * @Description:
+     *      查询测绘单位全表
+     * @Param: []
+     * @return: java.util.List<com.aaa.three.model.MappingUnit>
+     */
+    @GetMapping("/selectAllUnits")
+    List<MappingUnit> selectAllUnits();
 }

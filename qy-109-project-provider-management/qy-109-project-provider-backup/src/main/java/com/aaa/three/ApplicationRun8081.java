@@ -15,7 +15,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Date 2020/7/13 0013 10:25
  * @Return
  **/
-@SpringBootApplication/*(
+@SpringBootApplication/**(
         exclude = {
                 DataSourceAutoConfiguration.class,
                 RedisRepositoriesAutoConfiguration.class
