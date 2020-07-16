@@ -18,8 +18,8 @@ public enum  OperationStatus {
     ZUUL_FILTER_FAILED("7", "路由过滤失败"),
     ZUUL_FILTER_TOKEN_SUCCESS("8", "token值存在"),
     ZUUL_FILTER_TOKEN_FAILED("9", "token值不存在"),
-    REQUEST_IS_NULL("10", "request对象为null");
-
+    REQUEST_IS_NULL("10", "request对象为null"),
+    LOGIN_TIMEOUT_EXIT("11","连接超时");
     OperationStatus(String code, String msg) {
         this.code = code;
         this.msg = msg;

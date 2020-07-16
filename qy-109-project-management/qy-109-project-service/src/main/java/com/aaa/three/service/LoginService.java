@@ -20,6 +20,8 @@ import java.util.UUID;
 @Service
 public class LoginService extends BaseService<User> {
 
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * @Description : 执行登录操作
