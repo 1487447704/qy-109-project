@@ -18,7 +18,14 @@ public class MapperUnitController {
     @Autowired
     private IProjectService iProjectService;
 
-
+    /**
+     * @author: deng
+     * @date: 2020/07/16
+     * @Description:
+     *      查询所有的测绘单位
+     *      * @Param: []
+     * @return: java.util.List<com.aaa.three.model.MappingUnit>
+     */
     @GetMapping("/selectAllUnits")
     public List<MappingUnit> selectAllUnits(){
         return iProjectService.selectAllUnits();
