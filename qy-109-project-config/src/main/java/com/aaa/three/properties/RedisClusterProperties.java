@@ -22,4 +22,28 @@ public class RedisClusterProperties {
     private String nodes;
     private Integer maxAttempts;
     private Integer commandTimeout;
+
+    public String getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(String nodes) {
+        this.nodes = nodes;
+    }
+
+    public Integer getMaxAttempts() {
+        return maxAttempts;
+    }
+
+    public void setMaxAttempts(Integer maxAttempts) {
+        this.maxAttempts = maxAttempts;
+    }
+
+    public Integer getCommandTimeout() {
+        return commandTimeout;
+    }
+
+    public void setCommandTimeout(Integer commandTimeout) {
+        this.commandTimeout = commandTimeout;
+    }
 }
